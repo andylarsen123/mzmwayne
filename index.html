@@ -1,52 +1,57 @@
-<!-- Put this inside your master container where the map goes -->
-<div id="tableau-facade" style="position: relative; cursor: pointer; text-align: center;" onclick="loadTableauMap()">
-  <!-- Shows the static image first -->
-  <img src="https://public.tableau.com/static/images/Mi/MichiganZoningMAPv1_0/MZM1_0/1.png" style="max-width: 100%; height: auto; border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" alt="Click to load interactive map">
-  
-  <!-- A fake button layered over the image -->
-  <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #0055a4; color: white; padding: 15px 30px; font-family: 'Montserrat', sans-serif; font-weight: bold; border-radius: 5px; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
-    Load Interactive Map
+<!-- Import Montserrat from Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- Removed auto-centering, added left alignment. Adjust 1000px to the exact width of your Tableau dashboard -->
+<div style="max-width: 1000px; text-align: left;">
+
+  <!-- Added max-width to the image so it scales cleanly on small screens -->
+  <p><img class="fullsize" title="Michigan Zoning MAP" src="https://www.planningmi.org/aws/MAP/asset_manager/get_image/945453?ver=3" alt="Michigan Zoning MAP" border="0" style="max-width: 100%; height: auto;" /></p>
+
+  <h1 style="font-family: 'Montserrat', 'Century Gothic', sans-serif;"><strong>Zoning laws dictate what can be built.</strong></h1>
+
+  <div style="font-family: 'Montserrat', 'Century Gothic', sans-serif; padding-right: 10px; margin-bottom: 2rem;">
+    <p><span style="font-weight: 400;">Covering most of the land across the state of Michigan, the laws found in local zoning ordinances have a tremendous impact on our economy, environment, and society. But often, they are hard find, understand, and interpret. That&rsquo;s why we are collaborating with local, state, and national stakeholders to create the Michigan Zoning MAP: a user-friendly map to visualize how housing is permitted by zoning ordinances across the state.</span></p>
+    
+    <p><span style="font-weight: 400;">Rising housing costs and a mismatch between Michigan&rsquo;s housing stock and its households have sparked local, regional, and statewide interest in understanding how, exactly, zoning is impacting housing--especially across the many communities that make up a single housing system. Perhaps surprisingly, no formal assessment of this is possible right now. No official record tells us how many communities have zoning ordinances, much less what those ordinances say; there's no report on the impact of one ordinance, much less the collective.</span></p>
   </div>
+
+  <!-- tableau embed stuff -->
+  <div class='tableauPlaceholder' id='viz1788372923354' style='position: relative'>
+    <noscript>
+      <a href='#'>
+        <img alt='MZM 1.0 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Mi&#47;MichiganZoningMAPv1_0&#47;MZM1_0&#47;1_rss.png' style='border: none' />
+      </a>
+    </noscript>
+    <object class='tableauViz' style='display:none;'>
+      <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+      <param name='embed_code_version' value='3' /> 
+      <param name='site_root' value='' />
+      <param name='name' value='MichiganZoningMAPv1_0&#47;MZM1_0' />
+      <param name='tabs' value='no' />
+      <param name='toolbar' value='yes' />
+      <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Mi&#47;MichiganZoningMAPv1_0&#47;MZM1_0&#47;1.png' /> 
+      <param name='animate_transition' value='yes' />
+      <param name='display_static_image' value='yes' />
+      <param name='display_spinner' value='yes' />
+      <param name='display_overlay' value='yes' />
+      <param name='display_count' value='yes' />
+      <param name='language' value='en-US' />
+      <param name='filter' value='County=Wayne' /> 
+    </object>
+  </div>                
+  <script type='text/javascript'>                    
+    var divElement = document.getElementById('viz1788372923354');                    
+    var vizElement = divElement.getElementsByTagName('object')[0];                    
+    if ( divElement.offsetWidth > 800 ) { 
+      vizElement.style.width='100%';vizElement.style.height='1027px';
+    } else if ( divElement.offsetWidth > 500 ) { 
+      vizElement.style.width='100%';vizElement.style.height='1027px';
+    } else { 
+      vizElement.style.width='100%';vizElement.style.height='1877px';
+    }                     
+    var scriptElement = document.createElement('script');                    
+    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
+    vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+  </script>
+
 </div>
-
-<!-- The empty container waiting for the map -->
-<div id="actual-tableau-container" style="display: none;"></div>
-
-<script>
-function loadTableauMap() {
-  // Hide the image, show the map container
-  document.getElementById('tableau-facade').style.display = 'none';
-  document.getElementById('actual-tableau-container').style.display = 'block';
-  
-  // Inject the Tableau embed code dynamically
-  document.getElementById('actual-tableau-container').innerHTML = `
-    <div class='tableauPlaceholder' id='viz1788372923354' style='position: relative'>
-      <object class='tableauViz' style='display:none;'>
-        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
-        <param name='embed_code_version' value='3' /> 
-        <param name='site_root' value='' />
-        <param name='name' value='MichiganZoningMAPv1_0&#47;MZM1_0' />
-        <param name='tabs' value='no' />
-        <param name='toolbar' value='no' /> <!-- Turned off to save load time -->
-        <param name='animate_transition' value='no' /> <!-- Turned off to save load time -->
-        <param name='display_static_image' value='yes' />
-        <param name='display_spinner' value='yes' />
-        <param name='display_overlay' value='yes' />
-        <param name='display_count' value='yes' />
-        <param name='language' value='en-US' />
-        <param name='filter' value='County=Wayne' /> 
-      </object>
-    </div>
-  `;
-
-  // Run the Tableau API
-  var divElement = document.getElementById('viz1788372923354');                    
-  var vizElement = divElement.getElementsByTagName('object')[0];                    
-  if ( divElement.offsetWidth > 800 ) { vizElement.style.width='100%';vizElement.style.height='1027px'; } 
-  else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='100%';vizElement.style.height='1027px'; } 
-  else { vizElement.style.width='100%';vizElement.style.height='1877px'; }                     
-  var scriptElement = document.createElement('script');                    
-  scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
-  vizElement.parentNode.insertBefore(scriptElement, vizElement); 
-}
-</script>
