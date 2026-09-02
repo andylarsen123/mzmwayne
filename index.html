@@ -1,21 +1,27 @@
-<!-- Import Montserrat from Google Fonts -->
+<!-- 1. Pre-connect to Tableau servers for faster loading -->
+<link rel="preconnect" href="https://public.tableau.com" crossorigin>
+
+<!-- 2. Import Montserrat from Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
-<!-- Removed auto-centering, added left alignment. Adjust 1000px to the exact width of your Tableau dashboard -->
-<div style="max-width: 1000px; text-align: left;">
+<!-- 3. MASTER CONTAINER: 
+     - Keeps everything aligned left. 
+<div style="max-width: 1600px; text-align: left;">
 
-  <!-- Added max-width to the image so it scales cleanly on small screens -->
+  <!-- Image scales cleanly on small screens -->
   <p><img class="fullsize" title="Michigan Zoning MAP" src="https://www.planningmi.org/aws/MAP/asset_manager/get_image/945453?ver=3" alt="Michigan Zoning MAP" border="0" style="max-width: 100%; height: auto;" /></p>
 
+  <!-- Fonts applied to Header -->
   <h1 style="font-family: 'Montserrat', 'Century Gothic', sans-serif;"><strong>Zoning laws dictate what can be built.</strong></h1>
 
+  <!-- Fonts applied to Paragraphs -->
   <div style="font-family: 'Montserrat', 'Century Gothic', sans-serif; padding-right: 10px; margin-bottom: 2rem;">
     <p><span style="font-weight: 400;">Covering most of the land across the state of Michigan, the laws found in local zoning ordinances have a tremendous impact on our economy, environment, and society. But often, they are hard find, understand, and interpret. That&rsquo;s why we are collaborating with local, state, and national stakeholders to create the Michigan Zoning MAP: a user-friendly map to visualize how housing is permitted by zoning ordinances across the state.</span></p>
     
     <p><span style="font-weight: 400;">Rising housing costs and a mismatch between Michigan&rsquo;s housing stock and its households have sparked local, regional, and statewide interest in understanding how, exactly, zoning is impacting housing--especially across the many communities that make up a single housing system. Perhaps surprisingly, no formal assessment of this is possible right now. No official record tells us how many communities have zoning ordinances, much less what those ordinances say; there's no report on the impact of one ordinance, much less the collective.</span></p>
   </div>
 
-  <!-- tableau embed stuff -->
+  <!-- 4. TABLEAU EMBED -->
   <div class='tableauPlaceholder' id='viz1788372923354' style='position: relative'>
     <noscript>
       <a href='#'>
@@ -28,27 +34,37 @@
       <param name='site_root' value='' />
       <param name='name' value='MichiganZoningMAPv1_0&#47;MZM1_0' />
       <param name='tabs' value='no' />
-      <param name='toolbar' value='yes' />
+      
+      <!-- Performance tweak: toolbar turned off -->
+      <param name='toolbar' value='no' /> 
       <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Mi&#47;MichiganZoningMAPv1_0&#47;MZM1_0&#47;1.png' /> 
-      <param name='animate_transition' value='yes' />
+      
+      <!-- Performance tweak: animations turned off -->
+      <param name='animate_transition' value='no' /> 
       <param name='display_static_image' value='yes' />
       <param name='display_spinner' value='yes' />
       <param name='display_overlay' value='yes' />
       <param name='display_count' value='yes' />
       <param name='language' value='en-US' />
+      
+      <!-- Dynamic filter still active -->
       <param name='filter' value='County=Wayne' /> 
     </object>
   </div>                
   <script type='text/javascript'>                    
     var divElement = document.getElementById('viz1788372923354');                    
     var vizElement = divElement.getElementsByTagName('object')[0];                    
+    
+    // 5. HEIGHT SETTINGS: 
     if ( divElement.offsetWidth > 800 ) { 
-      vizElement.style.width='100%';vizElement.style.height='1027px';
+      vizElement.style.width='100%';vizElement.style.height='1627px';
     } else if ( divElement.offsetWidth > 500 ) { 
-      vizElement.style.width='100%';vizElement.style.height='1027px';
+      vizElement.style.width='100%';vizElement.style.height='1627px';
     } else { 
+      // Mobile stacked layout height
       vizElement.style.width='100%';vizElement.style.height='1877px';
     }                     
+    
     var scriptElement = document.createElement('script');                    
     scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
     vizElement.parentNode.insertBefore(scriptElement, vizElement);                
