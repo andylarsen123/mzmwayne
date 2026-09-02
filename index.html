@@ -2,7 +2,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
 <!-- 2. master layout container (keeps everything locked to 1600px and left-aligned) -->
-<div style="max-width: 1600px; max-height: 1000px; text-align: left; margin: 0;">
+<div style="max-width: 1600px; text-align: left; margin: 0;">
 
   <!-- image -->
   <p><img class="fullsize" title="Michigan Zoning MAP" src="https://www.planningmi.org/aws/MAP/asset_manager/get_image/945453?ver=3" alt="Michigan Zoning MAP" border="0" style="max-width: 100%; height: auto;" /></p>
@@ -17,62 +17,65 @@
     <p><span style="font-weight: 400;">Rising housing costs and a mismatch between Michigan&rsquo;s housing stock and its households have sparked local, regional, and statewide interest in understanding how, exactly, zoning is impacting housing--especially across the many communities that make up a single housing system. Perhaps surprisingly, no formal assessment of this is possible right now. No official record tells us how many communities have zoning ordinances, much less what those ordinances say; there's no report on the impact of one ordinance, much less the collective.</span></p>
   </div>
 
-<!-- ========================================== -->
-  <!-- 3. the "click to load" facade              -->
-  <!-- ========================================== -->
-
-  <!-- this entire block acts as a giant button. the onclick="loadTableauMap()" attribute fires the javascript below when clicked. -->
+  <!-- 3. the "click to load" facade -->
   <div id="tableau-facade" style="position: relative; cursor: pointer; text-align: center;" onclick="loadTableauMap()">
     
-    <!-- displays a high-res static screenshot of the dashboard. this loads instantly, keeping the page fast. -->
+    <!-- high-res static image -->
     <img src="https://public.tableau.com/static/images/Mi/MichiganZoningMAPv1_0/MZM1_0/1.png" style="max-width: 100%; height: auto; border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" alt="click to load interactive map">
     
-    <!-- pure css styling that creates the blue button and pins it dead-center over the static image. -->
+    <!-- the clickable blue button -->
     <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #0055a4; color: white; padding: 15px 30px; font-family: 'Montserrat', sans-serif; font-weight: bold; border-radius: 5px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); transition: background 0.3s;">
       load interactive map
     </div>
   </div>
+
+  <!-- 4. the empty container for the map -->
+  <div id="actual-tableau-container" style="display: none;"></div>
   
-  <!-- 4. standard tableau embed -->
-  <div class='tableauPlaceholder' id='viz1788372923354' style='position: relative'>
-    <noscript>
-      <a href='#'>
-        <img alt='MZM 1.0 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Mi&#47;MichiganZoningMAPv1_0&#47;MZM1_0&#47;1_rss.png' style='border: none' />
-      </a>
-    </noscript>
-    <object class='tableauViz' style='display:none;'>
-      <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
-      <param name='embed_code_version' value='3' /> 
-      <param name='site_root' value='' />
-      <param name='name' value='MichiganZoningMAPv1_0&#47;MZM1_0' />
-      <param name='tabs' value='no' />
-      <param name='toolbar' value='no' /> 
-      <param name='animate_transition' value='no' /> 
-      <param name='display_static_image' value='yes' />
-      <param name='display_spinner' value='yes' />
-      <param name='display_overlay' value='yes' />
-      <param name='display_count' value='yes' />
-      <param name='language' value='en-US' />
-      <param name='filter' value='County=Wayne' /> 
-    </object>
-  </div>                
-  
-  <script type='text/javascript'>                    
-    var divElement = document.getElementById('viz1788372923354');                    
-    var vizElement = divElement.getElementsByTagName('object')[0];                    
-    
-    // sizing logic
-    if ( divElement.offsetWidth > 800 ) { 
-      vizElement.style.width='100%';vizElement.style.height='1027px';
-    } else if ( divElement.offsetWidth > 500 ) { 
-      vizElement.style.width='100%';vizElement.style.height='1027px';
-    } else { 
-      vizElement.style.width='100%';vizElement.style.height='1877px';
-    }                     
-    
-    var scriptElement = document.createElement('script');                    
-    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
-    vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+  <!-- 5. the javascript -->
+  <script type='text/javascript'>
+    function loadTableauMap() {
+      // hide the image, show the container
+      document.getElementById('tableau-facade').style.display = 'none';
+      document.getElementById('actual-tableau-container').style.display = 'block';
+      
+      // inject the tableau html (removed the wayne county filter here so it shows the whole state)
+      document.getElementById('actual-tableau-container').innerHTML = `
+        <div class='tableauPlaceholder' id='viz1788372923354' style='position: relative'>
+          <object class='tableauViz' style='display:none;'>
+            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+            <param name='embed_code_version' value='3' /> 
+            <param name='site_root' value='' />
+            <param name='name' value='MichiganZoningMAPv1_0&#47;MZM1_0' />
+            <param name='tabs' value='no' />
+            <param name='toolbar' value='no' /> 
+            <param name='animate_transition' value='no' /> 
+            <param name='display_static_image' value='yes' />
+            <param name='display_spinner' value='yes' />
+            <param name='display_overlay' value='yes' />
+            <param name='display_count' value='yes' />
+            <param name='language' value='en-US' />
+          </object>
+        </div>
+      `;
+
+      // sizing logic
+      var divElement = document.getElementById('viz1788372923354');                    
+      var vizElement = divElement.getElementsByTagName('object')[0];                    
+      
+      if ( divElement.offsetWidth > 800 ) { 
+        vizElement.style.width='100%';vizElement.style.height='1027px';
+      } else if ( divElement.offsetWidth > 500 ) { 
+        vizElement.style.width='100%';vizElement.style.height='1027px';
+      } else { 
+        vizElement.style.width='100%';vizElement.style.height='1877px';
+      }                     
+      
+      // trigger the official tableau script
+      var scriptElement = document.createElement('script');                    
+      scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
+      vizElement.parentNode.insertBefore(scriptElement, vizElement);
+    }
   </script>
 
 </div>
