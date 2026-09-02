@@ -17,7 +17,23 @@
     <p><span style="font-weight: 400;">Rising housing costs and a mismatch between Michigan&rsquo;s housing stock and its households have sparked local, regional, and statewide interest in understanding how, exactly, zoning is impacting housing--especially across the many communities that make up a single housing system. Perhaps surprisingly, no formal assessment of this is possible right now. No official record tells us how many communities have zoning ordinances, much less what those ordinances say; there's no report on the impact of one ordinance, much less the collective.</span></p>
   </div>
 
-  <!-- 3. standard tableau embed (loads immediately) -->
+<!-- ========================================== -->
+  <!-- 3. the "click to load" facade              -->
+  <!-- ========================================== -->
+
+  <!-- this entire block acts as a giant button. the onclick="loadTableauMap()" attribute fires the javascript below when clicked. -->
+  <div id="tableau-facade" style="position: relative; cursor: pointer; text-align: center;" onclick="loadTableauMap()">
+    
+    <!-- displays a high-res static screenshot of the dashboard. this loads instantly, keeping the page fast. -->
+    <img src="https://public.tableau.com/static/images/Mi/MichiganZoningMAPv1_0/MZM1_0/1.png" style="max-width: 100%; height: auto; border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" alt="click to load interactive map">
+    
+    <!-- pure css styling that creates the blue button and pins it dead-center over the static image. -->
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #0055a4; color: white; padding: 15px 30px; font-family: 'Montserrat', sans-serif; font-weight: bold; border-radius: 5px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); transition: background 0.3s;">
+      load interactive map
+    </div>
+  </div>
+  
+  <!-- 4. standard tableau embed -->
   <div class='tableauPlaceholder' id='viz1788372923354' style='position: relative'>
     <noscript>
       <a href='#'>
