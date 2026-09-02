@@ -5,8 +5,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
 <!-- 3. MASTER CONTAINER: 
-     - Keeps everything aligned left. 
-<div style="max-width: 1600px; text-align: left;">
+     - Restricts the text, image, and map to exactly 1600px. -->
+<div style="max-width: 1600px; text-align: left; margin: 0;">
 
   <!-- Image scales cleanly on small screens -->
   <p><img class="fullsize" title="Michigan Zoning MAP" src="https://www.planningmi.org/aws/MAP/asset_manager/get_image/945453?ver=3" alt="Michigan Zoning MAP" border="0" style="max-width: 100%; height: auto;" /></p>
@@ -56,10 +56,11 @@
     var vizElement = divElement.getElementsByTagName('object')[0];                    
     
     // 5. HEIGHT SETTINGS: 
+    // width is set to 100% so it perfectly matches the 1600px wrapper above.
     if ( divElement.offsetWidth > 800 ) { 
-      vizElement.style.width='100%';vizElement.style.height='1627px';
+      vizElement.style.width='100%';vizElement.style.height='1027px';
     } else if ( divElement.offsetWidth > 500 ) { 
-      vizElement.style.width='100%';vizElement.style.height='1627px';
+      vizElement.style.width='100%';vizElement.style.height='1027px';
     } else { 
       // Mobile stacked layout height
       vizElement.style.width='100%';vizElement.style.height='1877px';
